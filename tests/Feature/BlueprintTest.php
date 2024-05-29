@@ -15,7 +15,7 @@ class BlueprintTest extends TestCase
     public function it_can_create_an_enum_column(): void
     {
         $this->assertTrue(Schema::hasColumn('cities', 'status'));
-        $this->assertEquals('varchar', Schema::getColumnType('cities', 'status'));
+        $this->assertEquals(static::isLaravel9() ? 'string' : 'varchar', Schema::getColumnType('cities', 'status'));
 
         if (! static::isLaravel9()) {
             $this->assertDatabaseColumnHasComment('cities', 'status', 'enum:' . CityStatus::class);
