@@ -1,5 +1,5 @@
 {
-    "name": "{Your Package}",
-    "description": "{package description}",
+    "name": "Schema",
+    "description": "Extends the Laravel database schema with convenience methods used by javaabu/generators",
     "version": "1"
 }

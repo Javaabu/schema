@@ -1,19 +1,17 @@
 <?php
 
-namespace Javaabu\Schema\Tests\TestSupport\Providers;
+namespace Javaabu\Schema;
 
 use Illuminate\Support\ServiceProvider;
 
-class TestServiceProvider extends ServiceProvider
+class SchemaServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
      */
     public function boot()
     {
-        $this->loadMigrationsFrom([
-            __DIR__ . '/../database',
-        ]);
+
     }
 
     /**
