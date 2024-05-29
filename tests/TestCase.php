@@ -2,12 +2,14 @@
 
 namespace Javaabu\Schema\Tests;
 
+use Javaabu\Schema\Testing\Concerns\InteractsWithDatabaseSchema;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Javaabu\Schema\SchemaServiceProvider;
 use Javaabu\Schema\Tests\TestSupport\Providers\TestServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
+    use InteractsWithDatabaseSchema;
 
     public function setUp(): void
     {
