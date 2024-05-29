@@ -5,6 +5,7 @@ namespace Javaabu\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\Builder;
 use Illuminate\Support\ServiceProvider;
+use InvalidArgumentException;
 
 class SchemaServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,7 @@ class SchemaServiceProvider extends ServiceProvider
      */
     protected function registerBuilderMacros()
     {
-        Builder::macro('getColumnComment', function (string $table, string $column) {
+        Builder::macro('getColumnComment', function (string $table, string $column, bool $fail_on_missing = false) {
             /** @var $this Builder */
             $column_info = $this->getColumns($table);
 
@@ -23,10 +24,14 @@ class SchemaServiceProvider extends ServiceProvider
                 }
             }
 
+            if ($fail_on_missing) {
+                throw new InvalidArgumentException(sprintf("No such column [%s] in the table [%s].", $column, $table));
+            }
+
             return null;
         });
 
-        Builder::macro('getTableComment', function (string $table) {
+        Builder::macro('getTableComment', function (string $table, bool $fail_on_missing = false) {
             /** @var $this Builder */
             $table_info = $this->getTables();
 
@@ -34,6 +39,10 @@ class SchemaServiceProvider extends ServiceProvider
                 if ($info['name'] == $table) {
                     return $info['comment'];
                 }
+            }
+
+            if ($fail_on_missing) {
+                throw new InvalidArgumentException(sprintf("No such table [%s] in the database [%s].", $table, $this->getConnection()->getDatabaseName()));
             }
 
             return null;

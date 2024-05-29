@@ -41,7 +41,7 @@ class HasDatabaseTableComment extends Constraint
      */
     public function getTableComment(): ?string
     {
-        return $this->database->getSchemaBuilder()->getTableComment($this->table);
+        return $this->database->getSchemaBuilder()->getTableComment($this->table, true);
     }
 
     /**

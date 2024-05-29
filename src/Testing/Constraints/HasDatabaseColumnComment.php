@@ -49,7 +49,7 @@ class HasDatabaseColumnComment extends Constraint
      */
     public function getColumnComment(): ?string
     {
-        return $this->database->getSchemaBuilder()->getColumnComment($this->table, $this->column);
+        return $this->database->getSchemaBuilder()->getColumnComment($this->table, $this->column, true);
     }
 
     /**
