@@ -39,17 +39,9 @@ class HasDatabaseTableComment extends Constraint
     /**
      * Get the column comment
      */
-    public function getTableComment(): string
+    public function getTableComment(): ?string
     {
-        $table_info = $this->database->getSchemaBuilder()->getTables();
-
-        foreach ($table_info as $info) {
-            if ($info['name'] == $this->table) {
-                return $info['comment'];
-            }
-        }
-
-        throw new InvalidArgumentException(sprintf("No such table [%s] in the database %s.", $this->table, $this->database->getDatabaseName()));
+        return $this->database->getSchemaBuilder()->getTableComment($this->table);
     }
 
     /**
