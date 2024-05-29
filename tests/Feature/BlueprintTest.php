@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Javaabu\Schema\Tests\TestCase;
 use Javaabu\Schema\Tests\TestSupport\Enums\CityStatus;
 
-class SchemaTest extends TestCase
+class BlueprintTest extends TestCase
 {
     use RefreshDatabase;
 

@@ -11,6 +11,11 @@ abstract class TestCase extends BaseTestCase
 {
     use InteractsWithDatabaseSchema;
 
+    public static function isLaravel9(): bool
+    {
+        return version_compare(app()->version(), '9.0', '>=') && version_compare(app()->version(), '10.0', '<');
+    }
+
     public function setUp(): void
     {
         parent::setUp();
