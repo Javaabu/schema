@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Javaabu\Schema\Tests\TestSupport\Enums\CityStatus;
 
 return new class () extends Migration {
     /**
@@ -14,8 +15,10 @@ return new class () extends Migration {
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->string('status')->index()->comment('enum:' . \Javaabu\Schema\Tests\TestSupport\Enums\CityStatus::class);
+            $table->nativeEnum('status', CityStatus::class)->index();
             $table->timestamps();
+
+            $table->comment('files');
         });
     }
     /**
