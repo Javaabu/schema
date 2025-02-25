@@ -37,7 +37,12 @@ class SchemaServiceProvider extends ServiceProvider
 
         Builder::macro('getTableComment', function (string $table, bool $fail_on_missing = false) {
             /** @var $this Builder */
-            $table_info = $this->getTables();
+            if (method_exists($this, 'getCurrentSchemaName')) {
+                $table_info = $this->getTables($this->getCurrentSchemaName());
+            } else {
+                /** @var $this Builder */
+                $table_info = $this->getTables();
+            }
 
             foreach ($table_info as $info) {
                 if ($info['name'] == $table) {
