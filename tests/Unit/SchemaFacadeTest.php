@@ -20,14 +20,12 @@ class SchemaFacadeTest extends TestCase
         }
     }
 
-    /** @test */
-    public function it_can_get_column_comments_with_schema_facade(): void
+    public function test_it_can_get_column_comments_with_schema_facade(): void
     {
         $this->assertEquals('enum:' . CityStatus::class, Schema::getColumnComment('cities', 'status'));
     }
 
-    /** @test */
-    public function it_can_get_table_comments_with_schema_facade(): void
+    public function test_it_can_get_table_comments_with_schema_facade(): void
     {
         $this->assertEquals('files', Schema::getTableComment('cities'));
     }

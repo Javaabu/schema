@@ -11,8 +11,7 @@ class BlueprintTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function it_can_create_an_enum_column(): void
+    public function test_it_can_create_an_enum_column(): void
     {
         $this->assertTrue(Schema::hasColumn('cities', 'status'));
         $this->assertEquals(static::isLaravel9() ? 'string' : 'varchar', Schema::getColumnType('cities', 'status'));
